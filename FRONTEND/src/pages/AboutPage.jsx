@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com';
+const API_URL = (import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com').replace(/\/$/, '');
 import { useSelector } from 'react-redux';
 import { pixelStarfield, pixelCat, gifB, gifC, hoverSound, bgMusic } from '../assets/index.js';
 

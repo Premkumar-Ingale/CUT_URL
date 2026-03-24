@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com';
+const API_URL = (import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com').replace(/\/$/, '');
 import { useQuery } from '@tanstack/react-query';
 import UserUrl from '../components/UserUrl';
 import { fetchDashboardUrls } from '../api/urlApi';
