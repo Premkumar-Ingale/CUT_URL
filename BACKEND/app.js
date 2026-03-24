@@ -17,21 +17,32 @@ const allowedOrigins = [
     'http://localhost:3000'
 ].filter(Boolean)
 
-app.use(cors({
+const corsOptions = {
     origin: function(origin, callback) {
-        // Allow requests with no origin (mobile apps, curl, etc.)
         if (!origin) return callback(null, true)
-        // Allow exact matches
         if (allowedOrigins.includes(origin)) return callback(null, true)
-        // Allow all Vercel preview deployments
         if (origin.endsWith('.vercel.app')) return callback(null, true)
         callback(new Error('Not allowed by CORS'))
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
-}))
+}
 
+// Handle preflight for ALL routes before anything else
+app.use((req, res, next) => {
+    const origin = req.headers.origin
+    if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app'))) {
+        res.header('Access-Control-Allow-Origin', origin)
+        res.header('Access-Control-Allow-Credentials', 'true')
+        res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+        res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    }
+    if (req.method === 'OPTIONS') return res.sendStatus(200)
+    next()
+})
+
+app.use(cors(corsOptions))
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
