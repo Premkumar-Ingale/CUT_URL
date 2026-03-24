@@ -2,7 +2,7 @@ import axios from "axios";
 import { store } from '../store/slice/store';
 import { logout } from '../store/slice/authSlice';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com';
+const API_URL = (import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com').replace(/\/$/, '');
 
 const axiosInstance = axios.create({
     baseURL: API_URL,

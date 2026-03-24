@@ -60,7 +60,7 @@ const AboutPage = () => {
   // ── Speaker button → NaaS joke (music cannot be stopped) ──
   const handleSpeakerClick = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com'}/api/create/no`, { credentials: 'include' });
+      const res = await fetch(`${(import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com').replace(/\/$/, '')}/api/create/no`, { credentials: 'include' });
       const data = await res.json();
       showToast(data.reason || 'No.');
     } catch {
