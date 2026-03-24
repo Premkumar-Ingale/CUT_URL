@@ -13,7 +13,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     if (error) {
-      fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/create/no`, {credentials: 'include'})
+      fetch(`${import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com'}/api/create/no`, {credentials: 'include'})
       .then(res => res.json())
       .then(data => setNoErrorMsg(data.reason))
       .catch(() => setNoErrorMsg('NO.'));
@@ -53,7 +53,7 @@ const DashboardPage = () => {
             <UserUrl
               key={url._id}
               originalUrl={url.full_url}
-              shortUrl={`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/${url.short_url}`}
+              shortUrl={`${import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com'}/${url.short_url}`}
               clicks={url.clicks}
               createdAt={url.createdAt}
             />

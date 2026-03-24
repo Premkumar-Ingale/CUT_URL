@@ -2,8 +2,10 @@ import axios from "axios";
 import { store } from '../store/slice/store';
 import { logout } from '../store/slice/authSlice';
 
+const API_URL = import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com';
+
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+    baseURL: API_URL,
     withCredentials: true,
 });
 
