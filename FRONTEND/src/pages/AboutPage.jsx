@@ -1,4 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+
+const API_URL = import.meta.env.VITE_API_URL || 'https://cut-url-crlg.onrender.com';
 import { useSelector } from 'react-redux';
 import { pixelStarfield, pixelCat, gifB, gifC, hoverSound, bgMusic } from '../assets/index.js';
 
@@ -60,7 +62,7 @@ const AboutPage = () => {
   // ── Speaker button → NaaS joke (music cannot be stopped) ──
   const handleSpeakerClick = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/create/no`, { credentials: 'include' });
+      const res = await fetch(`${API_URL}/api/create/no`, { credentials: 'include' });
       const data = await res.json();
       showToast(data.reason || 'No.');
     } catch {
