@@ -8,7 +8,7 @@ import dotenv from "dotenv"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import { attachUser } from "./src/utils/attachUser.js"
-dotenv.config("./.env")
+dotenv.config()
 const app=express()
 
 app.use(cors({
