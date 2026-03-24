@@ -1,7 +1,9 @@
 import { createRoute, redirect } from '@tanstack/react-router';
 import { rootRoute } from '../RootLayout';
-import DashboardPage from '../pages/DashboardPage';
 import { store } from '../store/slice/store';
+import { lazy, Suspense } from 'react';
+
+const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 
 export const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -13,5 +15,9 @@ export const dashboardRoute = createRoute({
       })
     }
   },
-  component: DashboardPage,
+  component: () => (
+    <Suspense fallback={<div className="text-center font-bold text-2xl animate-pulse mt-10">LOADING...</div>}>
+      <DashboardPage />
+    </Suspense>
+  ),
 });

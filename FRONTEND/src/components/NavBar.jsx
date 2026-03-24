@@ -28,15 +28,15 @@ const NavBar = () => {
         Home
       </Link>
 
-      <Link to="/about" activeProps={activeProps} inactiveProps={inactiveProps} className={navLinkClass}>
-        About
-      </Link>
-
       {isAuthenticated && (
         <Link to="/dashboard" activeProps={activeProps} inactiveProps={inactiveProps} className={navLinkClass}>
           Dashboard
         </Link>
       )}
+
+      <Link to="/about" activeProps={activeProps} inactiveProps={inactiveProps} className={navLinkClass}>
+        About
+      </Link>
 
       {isAuthenticated ? (
         <button
