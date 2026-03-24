@@ -8,11 +8,20 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
-          'router-vendor': ['@tanstack/react-router'],
-          'query-vendor': ['@tanstack/react-query'],
+        // In Vite 8 / Rolldown, manualChunks must be a function
+        manualChunks(id) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react-vendor';
+          }
+          if (id.includes('node_modules/@reduxjs') || id.includes('node_modules/react-redux')) {
+            return 'redux-vendor';
+          }
+          if (id.includes('node_modules/@tanstack/react-router')) {
+            return 'router-vendor';
+          }
+          if (id.includes('node_modules/@tanstack/react-query')) {
+            return 'query-vendor';
+          }
         }
       }
     },
