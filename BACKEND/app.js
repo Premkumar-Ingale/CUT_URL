@@ -55,7 +55,8 @@ app.use("/api/create",short_url)
 app.get("/:id", redirectFromShortUrl )
 app.use(errorHandler)
 
-app.listen(3000,()=>{
+const PORT = process.env.PORT || 3000
+app.listen(PORT,()=>{
     connectDB()
-    console.log("app is running on http://localhost:3000")
+    console.log(`app is running on port ${PORT}`)
 }) // server start
