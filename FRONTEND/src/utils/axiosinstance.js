@@ -3,7 +3,7 @@ import { store } from '../store/slice/store';
 import { logout } from '../store/slice/authSlice';
 
 const axiosInstance = axios.create({
-    baseURL: (import.meta.env.VITE_API_URL || 'http://localhost:3000').replace(/\/$/, ''),
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
     withCredentials: true,
 });
 
